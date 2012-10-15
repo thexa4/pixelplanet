@@ -9,5 +9,8 @@ class Base:
 	color = (255,255,255)
 	foreground = 1
 	
+	
 	def update(world, position):
+		"""Gives the material a chance to update itself.
+		Should return a tuple with the action to perform and its argument"""
 		return (Action.Idle, 0)
