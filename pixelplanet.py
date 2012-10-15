@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import pygame, sys, os
 from pygame.locals import *
+import drawing
 
 pygame.init()
 
