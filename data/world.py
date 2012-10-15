@@ -3,15 +3,10 @@ class World:
 	def __init__(self, width, height):
 		self.width   = width
 		self.height  = height
-		self.grid    = []
-		for y in range(width):
-			row = []
-			for x in range(height):
-				row.append([])
-			self.grid.append(row)
+		self.grid    = [[[] for x in range(width)] for y in range(height)]
 		
-		self.light   = [[0.0] * width] * height
-		self.gravity = [[(0.0, 0.0)] * width] * height
+		self.light   = [[[0.0] for x in range(width)] for y in range(height)]
+		self.gravity = [[(0.0,0.0) for x in range(width)] for y in range(height)]
 	
 	def generate(self):
 		
