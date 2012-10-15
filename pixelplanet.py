@@ -3,12 +3,16 @@ import pygame, sys, os
 from pygame.locals import *
 from drawing.camera import Camera
 from material.base import Base	
+from data.world import World
 
 base = Base()
 
 pygame.init()
 camera = Camera(1280, 720, pygame.display.set_mode((1280, 720)))
 pygame.display.set_caption('Pixel Planet')
+world = World(11,11)
+world.generate()
+print world.to_string()
 
 def input(events):
 	for event in events:
