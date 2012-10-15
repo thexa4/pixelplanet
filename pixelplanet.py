@@ -3,12 +3,11 @@ import pygame, sys, os
 from pygame.locals import *
 from drawing.camera import Camera
 
-pygame.init()
-
-window = pygame.display.set_mode((1280,720))
-pygame.display.set_caption('Pixel Planet')
-
 camera = Camera(1280,720)
+
+pygame.init()
+window = pygame.display.set_mode((camera.width, camera.height))
+pygame.display.set_caption('Pixel Planet')
 
 def input(events):
 	for event in events:
