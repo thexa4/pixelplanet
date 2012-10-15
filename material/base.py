@@ -1,5 +1,6 @@
 import pygame
 from data.actions import Action
+from material.materials import Materials
 
 class Base:
 	"""A base material, this material does nothing"""
@@ -14,3 +15,5 @@ class Base:
 		"""Gives the material a chance to update itself.
 		Should return a tuple with the action to perform and its argument"""
 		return (Action.Idle, 0)
+
+Materials.addMaterial(-1,Base);
