@@ -11,7 +11,7 @@ base = Base()
 pygame.init()
 window = pygame.display.set_mode((camera.width, camera.height))
 pygame.display.set_caption('Pixel Planet')
-world = World(11,11)
+world = World(79,79)
 world.generate()
 print world.to_string()
 
