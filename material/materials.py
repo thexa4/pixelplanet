@@ -2,5 +2,5 @@ class Materials:
 	materials = {}
 	
 	@staticmethod
-	def addMaterial(id, material):
+	def add_material(id, material):
 		Materials.materials[id] = material;

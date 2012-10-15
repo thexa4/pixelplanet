@@ -16,4 +16,4 @@ class Base:
 		Should return a tuple with the action to perform and its argument"""
 		return (Action.Idle, 0)
 
-Materials.addMaterial(-1,Base);
+Materials.add_material(-1,Base);
