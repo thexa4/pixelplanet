@@ -1,14 +1,39 @@
 from material.materials import Materials
 
+
+class Vector2:
+	def __init__(self, x, y):
+		self.x = x
+		self.y = y
+	
+	def copy(self):
+		return Vector2(self.x, self.y)
+	
+	def substract(self, other):
+		self.x -= other.x
+		self.y -= other.y
+	
+	def add(self, other):
+		self.x += other.x
+		self.y += other.y
+	
+	def scale(self, s):
+		self.x *= s
+		self.y *= s
+	
+	def length(self):
+		return (self.x**2 + self.y**2)**.5
+
+
 class World:
 	
 	def __init__(self, width, height):
 		self.width   = width
 		self.height  = height
-		self.grid    = [[[] for x in range(width)] for y in range(height)]
+		self.grid    = [[[] for x in xrange(width)] for y in xrange(height)]
 		
-		self.light   = [[[0.0] for x in range(width)] for y in range(height)]
-		self.gravity = [[(0.0,0.0) for x in range(width)] for y in range(height)]
+		self.light   = [[[0.0] for x in xrange(width)] for y in xrange(height)]
+		self.gravity = [[(0.0,0.0) for x in xrange(width)] for y in xrange(height)]
 	
 	def generate(self):
 		
@@ -16,10 +41,10 @@ class World:
 		cy = self.height / 2
 		r  = 0.75 * min(cx, cy)
 		
-		for x in range(self.width):
-			for y in range(self.height):
+		for x in xrange(self.width):
+			for y in xrange(self.height):
 				if (x - cx)**2 + (y - cy)**2 < r**2:
-					self.grid[y][x] = [0]
+					self.grid[y][x] = [-1]
 		
 		self.update_gravity()
 	
@@ -35,36 +60,59 @@ class World:
 	
 	def update_gravity(self):
 		
-		for x in range(self.width):
-			for y in range(self.height):
+		for x in xrange(self.width):
+			for y in xrange(self.height):
 				
-				g = (0.0, 0.0)
+				c = Vector2(x, y)
+				g = Vector2(0.0, 0.0)
 				
-				for px in range(self.width):
-					for py in range(self.height):
+				for ox in xrange(self.width):
+					for oy in xrange(self.height):
 						
-						cell = self.grid[py][px]
+						o = Vector2(ox, oy)
+						cell = self.grid[oy][ox]
 						
+						v = o.copy()
+						v.substract(c)
+						l = v.length()
+						if l == 0:
+							continue
+						
+						m = 0.0
 						for pixel in cell:
-							m = Materials.materials[pixel].mass
-							v = (px - x, py - y)
-							l = (v[0]**2 + v[1]**2)**0.5
-							f = m / l**2 / l
-							n = (v[0] * f, v[1] * f)
-							g += 
+							# Mass of pixel
+							m += Materials.materials[pixel].mass
+						
+						v.scale(m / l**3)
+						g.add(v)
 				
 				self.gravity[y][x] = g
 	
 	def to_string(self):
 		res = ''
 		
-		for y in range(self.height):
-			for x in range(self.width):
+		res += 'Material map:\n'
+		for y in xrange(self.height):
+			for x in xrange(self.width):
 				cell = self.grid[y][x]
 				if cell == []:
-					res += ' '
+					res += '   '
 				else:
-					res += str(cell[0])
+					res += ' %2d' % (cell[0])
+			res += '\n'
+		
+		res += '\nGravity vector map:\n'
+		for y in xrange(self.height):
+			for x in xrange(self.width):
+				g = self.gravity[y][x]
+				res += ' (%05.2f,%05.2f)' % (g.x, g.y)
+			res += '\n'
+		
+		res += '\nGravity value map:\n'
+		for y in xrange(self.height):
+			for x in xrange(self.width):
+				g = self.gravity[y][x]
+				res += ' %04.2f' % (g.length())
 			res += '\n'
 		
 		return res
