@@ -11,10 +11,11 @@ class Renderer:
 		worldarray = world.get_colors()
 		pxarray = pygame.PixelArray(self.camera.window)
 
-		for y in range(len(pxarray)):
-			for x in range(len(pxarray[y])):
-				pxarray[y][x] = worldarray[self.camera.y + y][self.camera.x + x]
+		for y in range(len(pxarray) - 1):
+			for x in range(len(pxarray[y]) - 1):
+				pxarray[y][x] = worldarray[x][y]
 
 		newwindow = pxarray.make_surface()
+		self.camera.window = self.camera.window.copy()
 		self.camera.window.blit(newwindow, newwindow.get_rect())
 		pygame.display.flip()
