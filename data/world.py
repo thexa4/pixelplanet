@@ -116,3 +116,14 @@ class World:
 			res += '\n'
 		
 		return res
+	
+	def get_colors(self):
+		color = [[(0, 0, 0) for x in xrange(self.width)] for y in xrange(self.height)]
+		
+		for y in xrange(self.height):
+			for x in xrange(self.width):
+				cell = self.grid[y][x]
+				if cell != []:
+					color[y][x] = (255, 255, 255)
+		
+		return color
