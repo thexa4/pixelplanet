@@ -11,7 +11,7 @@ base = Base()
 pygame.init()
 camera = Camera(1280, 720, pygame.display.set_mode((1280, 720)))
 pygame.display.set_caption('Pixel Planet')
-world = World(1280,720)
+world = World(1290,730)
 world.generate()
 
 renderer = Renderer(camera);
