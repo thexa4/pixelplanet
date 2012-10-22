@@ -10,12 +10,10 @@ class Renderer:
 		"We slice a part of the worldarray that fits within our camera"
 		worldarray = world.get_colors()
 		pxarray = pygame.PixelArray(self.camera.window)
-		#Slice worldarray to fit in pxarray using camera
-		partialworldarray = worldarray[self.camera.y:self.camera.y+self.camera.height, self.camera.x:self.camera.x+self.camera.width]
 
 		for y in range(len(pxarray)):
 			for x in range(len(pxarray[y])):
-				pxarray[y][x] = worldarray[y][x]
+				pxarray[y][x] = worldarray[self.camera.y + y][self.camera.x + x]
 
 		newwindow = pxarray.make_surface()
 		self.camera.window.blit(newwindow, newwindow.get_rect())
