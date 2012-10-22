@@ -3,12 +3,12 @@ import pygame
 from data.actions import Action
 from material.materials import Materials
 
-class Base:
-	"""A base material, this material does nothing"""
-	id = -1
+class Air:
+	"""Air"""
+	id = 4
 	mass = 1
 	transparency = 0.0
-	color = (255,255,255)
+	color = (0,0,255)
 	foreground = 1
 	
 	
@@ -17,4 +17,4 @@ class Base:
 		Should return a tuple with the action to perform and its argument"""
 		return (Action.Idle, 0)
 
-Materials.add_material(Base.id,Base);
+Materials.add_material(Air.id,Air);

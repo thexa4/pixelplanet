@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from material.materials import Materials
 
 
@@ -33,7 +34,7 @@ class World:
 		self.grid    = [[[] for x in xrange(width)] for y in xrange(height)]
 		
 		self.light   = [[[0.0] for x in xrange(width)] for y in xrange(height)]
-		self.gravity = [[Vector2(0.0,0.0) for x in xrange(width)] for y in xrange(height)]
+		self.gravity = [[(0.0,0.0) for x in xrange(width)] for y in xrange(height)]
 	
 	def generate(self):
 		
@@ -43,10 +44,17 @@ class World:
 		
 		for x in xrange(self.width):
 			for y in xrange(self.height):
-				if (x - cx)**2 + (y - cy)**2 < r**2:
-					self.grid[y][x] = [-1]
+				dist = (x - cx)**2 + (y - cy)**2
+				radius = r**2
+				self.grid[y][x] = [4]
+				if dist < radius:
+					self.grid[y][x] = [3]
+				if dist < radius * 0.9:
+					self.grid[y][x] = [2]
+				if dist < radius * 0.2:
+					self.grid[y][x] = [1]
 		
-		#self.update_gravity()
+		self.update_gravity()
 	
 	def update(self):
 		self.update_material()
