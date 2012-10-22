@@ -1,3 +1,5 @@
+from material.materials import Materials
+
 class World:
 	
 	def __init__(self, width, height):
@@ -37,7 +39,26 @@ class World:
 		pass
 	
 	def update_gravity(self):
-		pass
+		
+		for x in range(self.width):
+			for y in range(self.height):
+				
+				g = (0.0, 0.0)
+				
+				for px in range(self.width):
+					for py in range(self.height):
+						
+						cell = self.grid[py][px]
+						
+						for pixel in cell:
+							m = Materials.materials[pixel].mass
+							v = (px - x, py - y)
+							l = (v[0]**2 + v[1]**2)**0.5
+							f = m / l**2 / l
+							n = (v[0] * f, v[1] * f)
+							g += 
+				
+				self.gravity[y][x] = g
 	
 	def to_string(self):
 		res = ''
