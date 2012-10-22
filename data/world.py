@@ -32,7 +32,7 @@ class World:
 		self.height  = height
 		self.grid    = [[[] for x in xrange(width)] for y in xrange(height)]
 		
-		self.light   = [[[0.0] for x in xrange(width)] for y in xrange(height)]
+		self.light   = [[0.0 for x in xrange(width)] for y in xrange(height)]
 		self.gravity = [[Vector2(0.0,0.0) for x in xrange(width)] for y in xrange(height)]
 	
 	def generate(self):
