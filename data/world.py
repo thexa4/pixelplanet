@@ -33,7 +33,7 @@ class World:
 		self.grid    = [[[] for x in xrange(width)] for y in xrange(height)]
 		
 		self.light   = [[[0.0] for x in xrange(width)] for y in xrange(height)]
-		self.gravity = [[(0.0,0.0) for x in xrange(width)] for y in xrange(height)]
+		self.gravity = [[Vector2(0.0,0.0) for x in xrange(width)] for y in xrange(height)]
 	
 	def generate(self):
 		
@@ -46,7 +46,7 @@ class World:
 				if (x - cx)**2 + (y - cy)**2 < r**2:
 					self.grid[y][x] = [-1]
 		
-		self.update_gravity()
+		#self.update_gravity()
 	
 	def update(self):
 		self.update_material()
