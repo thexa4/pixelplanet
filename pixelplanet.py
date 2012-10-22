@@ -16,7 +16,7 @@ world.generate()
 
 renderer = Renderer(camera);
 
-print world.to_string()
+#print world.to_string()
 
 def input(events):
 	for event in events:
