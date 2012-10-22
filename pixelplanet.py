@@ -5,11 +5,10 @@ from drawing.camera import Camera
 from material.base import Base	
 from data.world import World
 
-camera = Camera(1280,720)
 base = Base()
 
 pygame.init()
-window = pygame.display.set_mode((camera.width, camera.height))
+camera = Camera(1280, 720, pygame.display.set_mode((1280, 720)))
 pygame.display.set_caption('Pixel Planet')
 world = World(11,11)
 world.generate()
