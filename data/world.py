@@ -54,7 +54,7 @@ class World:
 				if dist < radius * 0.2:
 					self.grid[y][x] = [1]
 		
-		self.update_gravity()
+		#self.update_gravity()
 	
 	def update(self):
 		self.update_material()
