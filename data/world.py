@@ -46,7 +46,7 @@ class World:
 			for y in xrange(self.height):
 				dist = (x - cx)**2 + (y - cy)**2
 				radius = r**2
-				self.grid[y][x] = [4]
+				self.grid[y][x] = []
 				if dist < radius:
 					self.grid[y][x] = [3]
 				if dist < radius * 0.9:
