@@ -2,11 +2,9 @@
 import pygame, sys, os
 from pygame.locals import *
 from drawing.camera import Camera
-from material.base import Base
 from data.world import World
 from renderer.renderer import Renderer
-
-base = Base()
+from material.materials import Materials
 
 pygame.init()
 camera = Camera(1280, 720, pygame.display.set_mode((1280, 720)))

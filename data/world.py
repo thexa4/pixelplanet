@@ -125,12 +125,14 @@ class World:
 		return res
 	
 	def get_colors(self):
+		print Materials.materials
+		
 		color = [[(0, 0, 0) for x in xrange(self.width)] for y in xrange(self.height)]
 		
 		for y in xrange(self.height):
 			for x in xrange(self.width):
 				cell = self.grid[y][x]
 				if cell != []:
-					color[y][x] = Materials.materials[cell[1]].color
+					color[y][x] = Materials.materials[cell[0]].color
 		
 		return color
